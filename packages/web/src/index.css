@@ -1,0 +1,252 @@
+:root {
+  color-scheme: light;
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  line-height: 1.5;
+  color: #1f2937;
+  background: #f4f6fb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page,
+.editor-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.page-header,
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.subtitle {
+  margin: 0.25rem 0 0;
+  color: #6b7280;
+}
+
+.primary-btn,
+.ghost-btn,
+.toolbar-btn {
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.primary-btn {
+  background: #2563eb;
+  color: white;
+  padding: 0.65rem 1rem;
+}
+
+.ghost-btn {
+  background: #eef2ff;
+  color: #1e3a8a;
+  padding: 0.5rem 0.85rem;
+}
+
+.card,
+.doc-card,
+.editor-shell {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.card,
+.empty {
+  padding: 1.5rem;
+}
+
+.error {
+  color: #b91c1c;
+}
+
+.doc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.doc-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem 1.25rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.doc-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+.doc-title {
+  font-weight: 600;
+}
+
+.doc-meta {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.editor-header-left,
+.editor-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.back-link {
+  color: #2563eb;
+  white-space: nowrap;
+}
+
+.title-input {
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  min-width: 240px;
+}
+
+.connection-badge {
+  font-size: 0.85rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: #e5e7eb;
+}
+
+.connection-badge--synced {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.connection-badge--disconnected {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.user-chip {
+  color: white;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.toolbar-btn {
+  background: white;
+  border: 1px solid #d1d5db;
+  padding: 0.4rem 0.65rem;
+}
+
+.toolbar-btn--active {
+  background: #dbeafe;
+  border-color: #93c5fd;
+}
+
+.editor-shell {
+  position: relative;
+  min-height: 60vh;
+  padding: 1.25rem 1.5rem 2rem;
+}
+
+.editor-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.72);
+  border-radius: 12px;
+  z-index: 2;
+}
+
+.docstar-editor-content {
+  outline: none;
+  min-height: 50vh;
+}
+
+.docstar-editor-content p,
+.docstar-editor-content h1,
+.docstar-editor-content h2,
+.docstar-editor-content ul,
+.docstar-editor-content ol,
+.docstar-editor-content blockquote,
+.docstar-editor-content pre {
+  margin: 0.75rem 0;
+}
+
+.docstar-editor-content h1 {
+  font-size: 2rem;
+}
+
+.docstar-editor-content h2 {
+  font-size: 1.5rem;
+}
+
+.docstar-editor-content blockquote {
+  border-left: 3px solid #d1d5db;
+  padding-left: 1rem;
+  color: #4b5563;
+}
+
+.docstar-editor-content pre {
+  background: #111827;
+  color: #f9fafb;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.collaboration-carets__caret {
+  border-left: 2px solid;
+  margin-left: -1px;
+  pointer-events: none;
+  position: relative;
+  word-break: normal;
+}
+
+.collaboration-carets__label {
+  border-radius: 4px 4px 4px 0;
+  color: white;
+  font-size: 11px;
+  left: -1px;
+  line-height: normal;
+  padding: 2px 6px;
+  position: absolute;
+  top: -1.4em;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.ProseMirror-selectednode {
+  outline: 2px solid #93c5fd;
+}

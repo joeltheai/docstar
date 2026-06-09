@@ -1,0 +1,30 @@
+{
+  "name": "@docstar/server",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "db:migrate": "tsx src/db/migrate.ts"
+  },
+  "dependencies": {
+    "@docstar/domain": "workspace:*",
+    "@effect/platform-node": "4.0.0-beta.43",
+    "better-sqlite3": "^11.9.0",
+    "effect": "4.0.0-beta.43",
+    "lib0": "^0.2.99",
+    "ws": "^8.18.1",
+    "y-leveldb": "^0.1.2",
+    "y-protocols": "^1.0.6",
+    "y-websocket": "^2.1.0",
+    "yjs": "^13.6.24"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/ws": "^8.18.1",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}

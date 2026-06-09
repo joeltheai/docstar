@@ -1,0 +1,40 @@
+{
+  "name": "@docstar/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@docstar/domain": "workspace:*",
+    "@effect/atom-react": "4.0.0-beta.43",
+    "@tiptap/core": "^3.21.0",
+    "@tiptap/extension-collaboration": "^3.21.0",
+    "@tiptap/extension-collaboration-caret": "^3.21.0",
+    "@tiptap/y-tiptap": "^3.0.2",
+    "@tiptap/extension-link": "^3.21.0",
+    "@tiptap/extension-placeholder": "^3.21.0",
+    "@tiptap/pm": "^3.21.0",
+    "@tiptap/react": "^3.21.0",
+    "@tiptap/starter-kit": "^3.21.0",
+    "effect": "4.0.0-beta.43",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.6.2",
+    "y-indexeddb": "^9.0.12",
+    "y-protocols": "^1.0.6",
+    "y-websocket": "^2.1.0",
+    "yjs": "^13.6.24"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^4.5.2",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}
