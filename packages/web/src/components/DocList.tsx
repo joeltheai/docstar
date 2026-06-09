@@ -1,8 +1,9 @@
-import { useAtomSet, useAtomValue } from "@effect/atom-react"
+import { useAtomRefresh, useAtomValue } from "@effect/atom-react"
 import { AsyncResult } from "effect/unstable/reactivity"
 import { DateTime } from "effect"
+import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { createDocumentMutation, documentsListAtom } from "../atoms/api.ts"
+import { documentsListAtom } from "../atoms/api.ts"
 
 const formatDate = (value: DateTime.Utc) => {
   const date = DateTime.toDateUtc(value)
@@ -12,11 +13,31 @@ const formatDate = (value: DateTime.Utc) => {
 export const DocList = () => {
   const navigate = useNavigate()
   const result = useAtomValue(documentsListAtom)
-  const createDocument = useAtomSet(createDocumentMutation, { mode: "promise" })
+  const refreshDocuments = useAtomRefresh(documentsListAtom)
+  const [creating, setCreating] = useState(false)
+  const [createError, setCreateError] = useState<string | null>(null)
 
   const handleCreate = async () => {
-    const doc = await createDocument({ payload: { title: "Untitled document" } })
-    navigate(`/doc/${doc.id}`)
+    setCreateError(null)
+    setCreating(true)
+    try {
+      const response = await fetch("/api/documents", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: "Untitled document" })
+      })
+      if (!response.ok) {
+        throw new Error(`Failed to create document (${response.status})`)
+      }
+      const doc = (await response.json()) as { id: string }
+      refreshDocuments()
+      navigate(`/doc/${doc.id}`)
+    } catch (error) {
+      console.error(error)
+      setCreateError("Could not create document. Is the server running?")
+    } finally {
+      setCreating(false)
+    }
   }
 
   return (
@@ -26,10 +47,12 @@ export const DocList = () => {
           <h1>Docstar</h1>
           <p className="subtitle">Collaborative documents powered by Yjs and Effect</p>
         </div>
-        <button type="button" className="primary-btn" onClick={() => void handleCreate()}>
-          New document
+        <button type="button" className="primary-btn" onClick={() => void handleCreate()} disabled={creating}>
+          {creating ? "Creating…" : "New document"}
         </button>
       </header>
+
+      {createError ? <div className="card error">{createError}</div> : null}
 
       {AsyncResult.builder(result)
         .onInitial(() => <div className="card">Loading documents…</div>)
@@ -39,8 +62,8 @@ export const DocList = () => {
           documents.length === 0 ? (
             <div className="card empty">
               <p>No documents yet.</p>
-              <button type="button" className="primary-btn" onClick={() => void handleCreate()}>
-                Create your first document
+              <button type="button" className="primary-btn" onClick={() => void handleCreate()} disabled={creating}>
+                {creating ? "Creating…" : "Create your first document"}
               </button>
             </div>
           ) : (
